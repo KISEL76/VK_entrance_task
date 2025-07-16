@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Marketplace API for VK
-  version: 1.0.0
+  version: 1.0.1
   description: |
     REST API для маркетплейса
 
@@ -156,12 +156,12 @@ components:
   schemas:
     ErrorResponse:
       type: object
-      required: [code, error]
+      required: [code, description]
       properties:
         code:
-          type: string
-          example: VALIDATION_ERROR
-        error:
+          type: integer
+          example: 401
+        error_description:
           type: string
           example: Описание ошибки
 
