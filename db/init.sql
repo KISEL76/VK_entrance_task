@@ -5,7 +5,7 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE ads (
+CREATE TABLE goods (
   id SERIAL PRIMARY KEY,
   title VARCHAR(100) NOT NULL CHECK (char_length(title) >= 5),
   description VARCHAR(500),
