@@ -32,6 +32,16 @@ func (h *Handler) CreateAd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if len(req.Description) > 500 {
+		writeError(w, http.StatusBadRequest, "Ошибка: слишком длинное описание в более, чем 500 символов")
+		return
+	}
+
+	if len(req.Title) > 100 || len(req.Title) < 5 {
+		writeError(w, http.StatusBadRequest, "Ошибка: название товара должно содержать от 5 до 100 символов")
+		return
+	}
+
 	var id int
 	var login string
 
