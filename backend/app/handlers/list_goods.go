@@ -151,11 +151,10 @@ func (h *Handler) GoodsList(w http.ResponseWriter, r *http.Request) {
 
 		// Считаем количество страниц — округление вверх
 		resp := models.GoodsListResponse{
-			Goods:     goods,
-			Page:      page,
-			Limit:     limit,
-			Total:     total,
-			TotalPage: (total + limit - 1) / limit,
+			Goods:         goods,
+			Page:          page,
+			GoodsQuantity: total,
+			PageAmount:    (total + limit - 1) / limit,
 		}
 		json.NewEncoder(w).Encode(resp) // Отправляем JSON-ответ с полной информацией
 	} else {
@@ -179,11 +178,10 @@ func (h *Handler) GoodsList(w http.ResponseWriter, r *http.Request) {
 
 		// Отправляем укороченный JSON-ответ без признака владения
 		resp := models.GoodsListPublicResponse{
-			Goods:     goods,
-			Page:      page,
-			Limit:     limit,
-			Total:     total,
-			TotalPage: (total + limit - 1) / limit,
+			Goods:         goods,
+			Page:          page,
+			GoodsQuantity: total,
+			PageAmount:    (total + limit - 1) / limit,
 		}
 		json.NewEncoder(w).Encode(resp)
 	}

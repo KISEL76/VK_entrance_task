@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+const maxPrice = 100_000_000
+
 func (h *Handler) CreateAd(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Ошибка: поддерживается только метод Post для создания объявления", http.StatusMethodNotAllowed)
@@ -22,6 +24,11 @@ func (h *Handler) CreateAd(w http.ResponseWriter, r *http.Request) {
 	var req models.GoodsRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		writeError(w, http.StatusBadRequest, "Ошибка: невалидный JSON")
+		return
+	}
+
+	if req.Price < 0 || req.Price > maxPrice {
+		writeError(w, http.StatusBadRequest, "Ошибка: цена должна быть от 0 до 100 000 000")
 		return
 	}
 

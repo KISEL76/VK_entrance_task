@@ -28,17 +28,15 @@ type GoodsPublicResponse struct {
 }
 
 type GoodsListResponse struct {
-	Goods     []GoodsResponse `json:"goods"`
-	Page      int             `json:"page"`
-	Limit     int             `json:"limit"`
-	Total     int             `json:"total"`
-	TotalPage int             `json:"total_page"`
+	Goods         []GoodsResponse `json:"goods"`
+	Page          int             `json:"current_page"`
+	GoodsQuantity int             `json:"goods_quantity"`
+	PageAmount    int             `json:"page_amount"`
 }
 
 type GoodsListPublicResponse struct {
-	Goods     []GoodsPublicResponse `json:"goods"`
-	Page      int                   `json:"page"`
-	Limit     int                   `json:"limit"`
-	Total     int                   `json:"total"`
-	TotalPage int                   `json:"total_page"`
+	Goods         []GoodsPublicResponse `json:"goods"`
+	Page          int                   `json:"current_page"`
+	GoodsQuantity int                   `json:"goods_quantity"`
+	PageAmount    int                   `json:"page_amount"`
 }
