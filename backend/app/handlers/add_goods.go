@@ -42,6 +42,14 @@ func (h *Handler) CreateAd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if req.ImageURL != "" {
+		ok, errMsg := isImageValid(req.ImageURL)
+		if !ok {
+			writeError(w, http.StatusBadRequest, errMsg)
+			return
+		}
+	}
+
 	var id int
 	var login string
 
